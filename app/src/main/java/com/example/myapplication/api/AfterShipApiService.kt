@@ -1,9 +1,7 @@
 package com.example.myapplication.api
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface AfterShipApiService {
     @GET("trackings/{slug}/{tracking_number}")
@@ -11,6 +9,11 @@ interface AfterShipApiService {
         @Path("slug") slug: String,
         @Path("tracking_number") trackingNumber: String,
         @Header("aftership-api-key") apiKey: String
-    ): Call<AfterShipTrackingResponse>
+    ):Call<AfterShipTrackingResponse>
+    @POST("trackings")
+    fun createTracking(
+        @Header("aftership-api-key") apiKey: String,
+        @Body requestBody: AfterShipCreateTrackingRequest
+    ): Call<AfterShipCreateTrackingResponse>
 }
 
