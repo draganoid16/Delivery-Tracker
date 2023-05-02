@@ -1,11 +1,6 @@
-package com.example.myapplication
+package com.example.myapplication.api
 
 import android.util.Log
-import android.widget.TextView
-import com.example.myapplication.api.AfterShipApiClient
-import com.example.myapplication.api.AfterShipCreateTrackingRequest
-import com.example.myapplication.api.AfterShipCreateTrackingResponse
-import com.example.myapplication.api.AfterShipTrackingResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,6 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">joo_filipe_fernandes_coelho_s_application</string>
+    <string name="loading">Loading…</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="msg_tip_make_sure">Tip: Make sure you\u2019re tracking number is correct</string>
+    <string name="msg_enter_your_pack">Enter your packing number</string>
+    <string name="msg_enter_your_ship">Enter your shipping provider</string>
+    <string name="lbl_track">Track</string>
+    <string name="lbl_example_ctt">Example: CTT</string>
+    <string name="msg_tip_if_you_don">Tip: If you don\u2019t see you shipping provider,
+its probably not supported. Sorry!</string>
+    <string name="msg_delivery_tracke">Delivery Tracker</string>
+    <string name="msg_example_268495">Example: 2684958674</string>
 </resources>
