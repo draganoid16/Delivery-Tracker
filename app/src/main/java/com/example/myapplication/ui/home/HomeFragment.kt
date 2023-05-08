@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 
@@ -28,11 +31,26 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Use this observer if you want to update any UI elements with the data
         }
+
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.dropdown_menu_popup_item)
+        val options = arrayOf("CTT", "UPS", "DHL")
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.dropdown_menu_popup_item,
+            options
+        )
+
+        autoCompleteTextView.setAdapter(adapter)
     }
 
     override fun onDestroyView() {

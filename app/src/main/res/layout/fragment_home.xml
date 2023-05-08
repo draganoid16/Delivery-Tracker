@@ -6,17 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dropdown_menu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="345dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="7dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <AutoCompleteTextView
+            android:id="@+id/dropdown_menu_popup_item"
+            android:layout_width="345dp"
+            android:layout_height="59dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Example: CTT"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Tip: If you don’t see you shipping provider, its probably not supported. Sorry!"
+        android:textColor="@color/hint_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_menu" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="238dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="177dp"
+        android:fontFamily="sans-serif"
+        android:text="Enter your shipping provider"
+        android:textColor="@color/tracking_blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.658"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="177dp"
+        android:fontFamily="sans-serif"
+        android:text="Delivery Tracker"
+        android:textColor="@color/tracking_blue"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="238dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="177dp"
+        android:fontFamily="sans-serif"
+        android:text="Enter your tracking number"
+        android:textColor="@color/tracking_blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.658"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="345dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="   Example: 28493421"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="72dp"
+        android:text="Tip: Make sure you’re tracking number is correct!"
+        android:textColor="@color/hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="335dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="132dp"
+        android:backgroundTint="@color/tracking_blue"
+        android:text="TRACK"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

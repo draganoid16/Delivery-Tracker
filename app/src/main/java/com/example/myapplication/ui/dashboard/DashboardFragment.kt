@@ -72,7 +72,8 @@ class DashboardFragment : Fragment() {
                             }
                             Log.d("DashboardFragment", "API Success: $trackingInfo")
                             textAPI.text = checkpointsInfo.toString()
-                        } else {
+                        }
+                        else {
                             val errorMessage =
                                 "API Error! Tracking not found! | Error Code: ${response.code()} - ${
                                     response.errorBody()?.string()
