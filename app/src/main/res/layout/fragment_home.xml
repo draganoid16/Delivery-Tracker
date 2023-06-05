@@ -20,12 +20,15 @@
 
         <AutoCompleteTextView
             android:id="@+id/dropdown_menu_popup_item"
+            android:background="@drawable/rounded_edittext"
             android:layout_width="345dp"
             android:layout_height="59dp"
-            android:background="@drawable/rounded_edittext"
+            android:paddingLeft="8dp"
             android:hint="Example: CTT"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <TextView
         android:id="@+id/textView6"
@@ -91,8 +94,8 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="345dp"
-        android:layout_height="59dp"
+        android:layout_width="348dp"
+        android:layout_height="58dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="27dp"
@@ -100,6 +103,8 @@
         android:ems="10"
         android:hint="   Example: 28493421"
         android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:paddingLeft="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -125,7 +130,7 @@
         android:layout_marginTop="39dp"
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="132dp"
-        android:backgroundTint="@color/tracking_blue"
+        android:background="@drawable/rounded_button"
         android:text="TRACK"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

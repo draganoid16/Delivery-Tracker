@@ -4,9 +4,10 @@ app = Flask(__name__)
 
 tracking_data = {
     "id": "1",
-    "trackingNumber": "LA114547488PT",
-    "carrier-slug": "portugal-ctt",
+    "trackingNumber": "test",
+    "carrier-slug": "CTT",
     "status": "in_transit",
+    "estimated_date_delivery": "Estimated Delivery: October 13, 2015",
     "checkpoints": [
         {
             "message": "Package received",
@@ -17,6 +18,13 @@ tracking_data = {
         },
         {
             "message": "Package in transit",
+            "checkpointTime": "2023-04-16T14:00:00",
+            "city": "Porto",
+            "country": "Portugal",
+            "location": "Porto Distribution Center"
+        },
+         {
+            "message": "Delivered",
             "checkpointTime": "2023-04-16T14:00:00",
             "city": "Porto",
             "country": "Portugal",

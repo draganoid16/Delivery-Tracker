@@ -5,6 +5,7 @@ data class LocalTrackingResponse(
     val trackingNumber: String,
     val `carrier-slug`: String,
     val status: String,
+    val estimated_date_delivery: String,
     val checkpoints: List<Checkpoint>
 ) {
     data class Checkpoint(
