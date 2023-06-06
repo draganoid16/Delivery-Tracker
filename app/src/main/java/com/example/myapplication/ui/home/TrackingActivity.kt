@@ -62,6 +62,12 @@ class TrackingActivity : AppCompatActivity() {
             val trackingTitleText: TextView = findViewById(R.id.tracking_title)
             val trackingNumberText: TextView = findViewById(R.id.tracking_number)
             val relativeLayout : RelativeLayout = findViewById(R.id.relativeLayout)
+            val loadingLayout: RelativeLayout = findViewById(R.id.loading_layout)
+            val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+
+            loadingLayout.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
+
 
             trackingTitleText.text = "You are currently tracking"
             trackingNumberText.text = predefinedTrackingNumber
@@ -86,6 +92,8 @@ class TrackingActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val trackingInfo = response.body()
                             // Clear the error TextView and ImageView
+                            loadingLayout.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             errorTextView.text = ""
                             errorImageView.setImageResource(0)
                             // Get your parent layout
@@ -173,6 +181,8 @@ class TrackingActivity : AppCompatActivity() {
                                 "API Error! Tracking not found! | Error Code: ${response.code()} - ${
                                     response.errorBody()?.string()
                                 }"
+                            loadingLayout.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             // Show error message and image
                             trackingTitleText.text = ""
                             trackingNumberText.text = ""
@@ -186,6 +196,8 @@ class TrackingActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<LocalTrackingResponse>, t: Throwable) {
                         Log.e("DashboardFragment", "API Failure: ${t.message}")
+                        loadingLayout.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         trackingTitleText.text = ""
                         trackingNumberText.text = ""
                         estimatedDeliveryText.text = ""
@@ -245,6 +257,5 @@ class TrackingActivity : AppCompatActivity() {
             resources.displayMetrics
         ).toInt()
     }
-
 
 }

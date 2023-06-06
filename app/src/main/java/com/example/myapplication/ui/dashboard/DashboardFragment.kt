@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.dashboard
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -97,15 +98,14 @@ class DashboardFragment : Fragment() {
     }
 
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
 
-class DeliveryAdapter(private var deliveryList: List<TrackingInfo>) : RecyclerView.Adapter<DeliveryAdapter.DeliveryViewHolder>() {
+class DeliveryAdapter(private var deliveryList: List<TrackingInfo>) :
+    RecyclerView.Adapter<DeliveryAdapter.DeliveryViewHolder>() {
 
     class DeliveryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val deliveryText: TextView = itemView.findViewById(R.id.delivery_text)
@@ -113,7 +113,8 @@ class DeliveryAdapter(private var deliveryList: List<TrackingInfo>) : RecyclerVi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_delivery, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_delivery, parent, false)
         return DeliveryViewHolder(view)
     }
 
@@ -122,18 +123,21 @@ class DeliveryAdapter(private var deliveryList: List<TrackingInfo>) : RecyclerVi
         holder.deliveryText.text = delivery.name  // Set the name
 
         holder.detailsButton.setOnClickListener {
-                val delivery = deliveryList[position]
-                val context = holder.itemView.context
+            val delivery = deliveryList[position]
+            val context = holder.itemView.context
 
-                // Create an Intent to open the ArchiveDeleteDeliveries activity
-                val intent = Intent(context, ArchiveDeleteDeliveries::class.java)
+            // Create an Intent to open the ArchiveDeleteDeliveries activity
+            val intent = Intent(context, ArchiveDeleteDeliveries::class.java)
 
-                // Add the carrier slug and tracking number as extras to the intent
-                intent.putExtra("carrier_slug", delivery.carrierSlug)
-                intent.putExtra("tracking_number", delivery.trackingNumber)
+            // Add the carrier slug and tracking number as extras to the intent
+            intent.putExtra("carrier_slug", delivery.carrierSlug)
+            intent.putExtra("tracking_number", delivery.trackingNumber)
 
-                // Start the ArchiveDeleteDeliveries activity
-                context.startActivity(intent)
+            // Start the ArchiveDeleteDeliveries activity
+            context.startActivity(intent)
+            if (context is Activity) {
+                context.finish()
+            }
 
         }
     }

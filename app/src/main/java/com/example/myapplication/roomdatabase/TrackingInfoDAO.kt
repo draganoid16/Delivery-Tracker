@@ -16,8 +16,8 @@ interface TrackingInfoDao {
     @Query("UPDATE TrackingInfo SET name = :name WHERE id = :id")
     fun updateName(name: String, id: Int)
 
-    @Query("SELECT * FROM TrackingInfo WHERE id = :id")
-    fun getById(id: Int): TrackingInfo?
+    @Query("SELECT * FROM TrackingInfo WHERE trackingNumber = :trackingNumber")
+    fun getByTrackingNumber(trackingNumber: String): TrackingInfo?
 
     @Delete
     fun delete(trackingInfo: TrackingInfo)

@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.dashboard
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.room.Room
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.api.LocalTrackingApi
 import com.example.myapplication.api.LocalTrackingResponse
@@ -42,6 +44,20 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
         val carrierSlug = intent.getStringExtra("carrier_slug")
         val trackingNumber = intent.getStringExtra("tracking_number")
         apiCall(carrierSlug.toString(), trackingNumber.toString())
+
+        val archiveButton: Button = findViewById(R.id.archivebutton)
+        archiveButton.setOnClickListener {
+            if (trackingNumber != null) {
+                archiveDelivery(trackingNumber.toString())
+            }
+        }
+
+        val deleteButton: Button = findViewById(R.id.deletebutton)
+        deleteButton.setOnClickListener {
+            if (trackingNumber != null) {
+                deleteDelivery(trackingNumber.toString())
+            }
+        }
     }
 
     private fun apiCall(predefinedCarrierSlug: String, predefinedTrackingNumber: String) {
@@ -52,6 +68,11 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
             val trackingTitleText: TextView = findViewById(R.id.tracking_title)
             val trackingNumberText: TextView = findViewById(R.id.tracking_number)
             val relativeLayout: RelativeLayout = findViewById(R.id.relativeLayout)
+            val loadingLayout: RelativeLayout = findViewById(R.id.loading_layout)
+            val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+
+            loadingLayout.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
 
             trackingTitleText.text = "You are currently tracking"
             trackingNumberText.text = predefinedTrackingNumber
@@ -75,6 +96,8 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             val trackingInfo = response.body()
+                            loadingLayout.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             // Clear the error TextView and ImageView
                             errorTextView.text = ""
                             errorImageView.setImageResource(0)
@@ -165,10 +188,12 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
                                     response.errorBody()?.string()
                                 }"
                             // Show error message and image
+                            loadingLayout.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             trackingTitleText.text = ""
                             trackingNumberText.text = ""
                             estimatedDeliveryText.text = ""
-                            relativeLayout.visibility = View.GONE
+                            //relativeLayout.visibility = View.GONE
                             errorTextView.text =
                                 "Tracking not found. Please check the tracking number."
                             errorImageView.setImageResource(R.drawable.error_image)
@@ -178,10 +203,12 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
 
                     override fun onFailure(call: Call<LocalTrackingResponse>, t: Throwable) {
                         Log.e("DashboardFragment", "API Failure: ${t.message}")
+                        loadingLayout.visibility = View.GONE
+                        progressBar.visibility = View.GONE
                         trackingTitleText.text = ""
                         trackingNumberText.text = ""
                         estimatedDeliveryText.text = ""
-                        relativeLayout.visibility = View.GONE
+                        //relativeLayout.visibility = View.GONE
                         errorTextView.text = "API Failure!"
                         errorImageView.setImageResource(R.drawable.error_image)
                     }
@@ -191,7 +218,7 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
         }
     }
 
-    private fun archiveDelivery(deliveryId: Int) {
+    private fun archiveDelivery(trackingNumber: String) {
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "tracking_info_database"
@@ -199,7 +226,7 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             // Get the delivery info from the current database
-            val delivery = db.trackingInfoDao().getById(deliveryId)
+            val delivery = db.trackingInfoDao().getByTrackingNumber(trackingNumber)
 
             // Delete the delivery from the current database
             delivery?.let {
@@ -212,17 +239,20 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
                 AppDatabase::class.java, "archive_tracking_info_database"
             ).build()
             delivery?.let {
-                db.trackingInfoDao().insert(it)
+                archiveDb.trackingInfoDao().insert(it)
             }
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@ArchiveDeleteDeliveries, "Delivery Archived", Toast.LENGTH_LONG).show()
-                // Perform any other necessary actions after archiving the delivery
+                Toast.makeText(this@ArchiveDeleteDeliveries, "Tracking Archived", Toast.LENGTH_LONG).show()
+                finish()
+                val intent = Intent(this@ArchiveDeleteDeliveries, MainActivity::class.java)
+                intent.putExtra("ShowDashboardFragment", true)
+                startActivity(intent)
             }
         }
     }
 
-    private fun deleteDelivery(deliveryId: Int) {
+    private fun deleteDelivery(trackingNumber: String) {
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "tracking_info_database"
@@ -230,7 +260,7 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             // Get the delivery info from the current database
-            val delivery = db.trackingInfoDao().getById(deliveryId)
+            val delivery = db.trackingInfoDao().getByTrackingNumber(trackingNumber)
 
             // Delete the delivery from the current database
             delivery?.let {
@@ -238,11 +268,16 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
             }
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@ArchiveDeleteDeliveries, "Delivery Deleted", Toast.LENGTH_LONG).show()
-                // Perform any other necessary actions after deleting the delivery
+                Toast.makeText(this@ArchiveDeleteDeliveries, "Tracking Deleted", Toast.LENGTH_LONG).show()
+                finish()
+                val intent = Intent(this@ArchiveDeleteDeliveries, MainActivity::class.java)
+                intent.putExtra("ShowDashboardFragment", true)
+                startActivity(intent)
             }
+
         }
     }
+
 
     private fun convertDpToPx(dp: Int): Int {
         return TypedValue.applyDimension(
