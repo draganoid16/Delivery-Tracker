@@ -13,7 +13,7 @@
         android:layout_marginTop="4dp"
         android:text="If this screen is empty, please save your deliveries"
         android:textColor="@color/gray_400"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -28,8 +28,8 @@
         android:text="All Tracked Deliveries"
         android:textColor="@color/tracking_blue"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

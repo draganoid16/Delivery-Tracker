@@ -105,7 +105,7 @@ class TrackingActivity : AppCompatActivity() {
                                 ?: "No Estimated Delivery" //if null = not found
 
                             trackingInfo?.checkpoints?.takeLast(2)
-                                ?.forEach { checkpoint ->  // Limit to 2 checkpoints
+                                ?.forEach {checkpoint ->  // Limit to 2 checkpoints
 
                                     // Create a new ImageView
                                     val statusImageView = ImageView(this@TrackingActivity).apply {
@@ -167,6 +167,7 @@ class TrackingActivity : AppCompatActivity() {
                                             topMargin = convertDpToPx(8)
 
                                         }
+
                                         text = checkpoint.message
                                         parentLayout.addView(this)
                                     }

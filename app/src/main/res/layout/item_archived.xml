@@ -14,28 +14,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/item_delivery"
         android:orientation="horizontal"
-        android:background="@drawable/rounded_button"
-        android:padding="20dp">
+        android:background="@drawable/rounded_archives"
+        android:padding="30dp">
 
         <TextView
             android:id="@+id/delivery_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:paddingLeft="16dp"
+            android:paddingLeft="121dp"
             android:text="Delivery X"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/details_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingBottom="2dp"
-            android:background="@drawable/rounded_button"
-            android:text="Details"
-            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

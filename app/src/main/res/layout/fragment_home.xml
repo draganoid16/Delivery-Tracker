@@ -29,12 +29,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="300dp"
         android:layout_height="34dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:text="Tip: If you don’t see you shipping provider, its probably not supported. Sorry!"
         android:textColor="@color/hint_color"
@@ -63,12 +62,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="177dp"
         android:fontFamily="sans-serif"
         android:text="Delivery Tracker"
         android:textColor="@color/tracking_blue"
-        android:textSize="28sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

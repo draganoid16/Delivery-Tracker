@@ -60,10 +60,10 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="596dp"
+        android:layout_marginTop="540dp"
         android:background="#0047FF"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="-2dp"
             android:text="Do you wish to save this tracking?"
             android:textColor="@android:color/white"
 
@@ -84,10 +84,10 @@
 
         <Button
             android:id="@+id/savebutton"
-            android:layout_width="335dp"
+            android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginStart="38dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="38dp"
             android:layout_marginBottom="150dp"
             android:background="@drawable/rounded_button"
@@ -110,6 +110,7 @@
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="34sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.447"
@@ -122,9 +123,13 @@
         android:layout_width="wrap_content"
         android:layout_height="670dp"
         android:layout_marginTop="-100dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error_text"
+        app:layout_constraintVertical_bias="0.141"
         app:srcCompat="@drawable/error_image" />
 
     <RelativeLayout

@@ -38,6 +38,9 @@ class ArchiveDeleteDeliveries : AppCompatActivity() {
         val imageView: ImageView = findViewById(R.id.imageView)
         imageView.setOnClickListener {
             finish()  // go back
+            val intent = Intent(this@ArchiveDeleteDeliveries, MainActivity::class.java)
+            intent.putExtra("ShowDashboardFragment", true)
+            startActivity(intent) //restart
         }
 
         // Retrieve the carrier slug and tracking number from the intent extras

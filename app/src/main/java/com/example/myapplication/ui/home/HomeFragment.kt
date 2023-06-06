@@ -39,7 +39,9 @@ class HomeFragment : Fragment() {
 
         homeViewModel.text.observe(viewLifecycleOwner) {
         // Use this observer if you want to update any UI elements with the data
-
+            val actionBar = (activity as? AppCompatActivity)?.supportActionBar
+            actionBar?.title = "Delivery Tracker"
+            actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#0047FF")))
         }
 
         return root
@@ -47,7 +49,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.dropdown_menu_popup_item)
         val options = arrayOf("CTT", "UPS", "DHL")
 
@@ -56,10 +57,6 @@ class HomeFragment : Fragment() {
             R.layout.dropdown_menu_popup_item,
             options
         )
-        //cor e titulo
-        val actionBar = (activity as? AppCompatActivity)?.supportActionBar
-        actionBar?.title = "Delivery Tracker"
-        actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#0047FF")))
 
         autoCompleteTextView.setAdapter(adapter)
 
